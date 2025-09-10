@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Curriculum QR Attendance</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- HTML5 QR code library -->
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+</head>
+<body>
+    <h1>Smart Curriculum QR Attendance</h1>
+    <div id="attendance-panel">
+        <div id="qr-reader" style="width:300px"></div>
+        <div id="result"></div>
+        <button onclick="resetAttendance()">Reset Attendance</button>
+        <h2>Today's Attendance</h2>
+        <ul id="attendance-list"></ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

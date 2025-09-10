@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #ebf2fa;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+#attendance-panel {
+    background: #fff;
+    margin: auto;
+    padding: 20px;
+    border-radius: 12px;
+    width: 360px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+}
+
+button {
+    padding: 8px 16px;
+    margin: 16px 0;
+    background: #5e82f7;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+ul {
+    text-align: left;
+    margin-top: 16px;
+}
