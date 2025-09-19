@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Attendance & Activity App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="screen active">
+        <div class="login-container">
+            <h1>📚 Smart Attendance System</h1>
+            <h3>Punjab Higher Education Initiative</h3>
+            <div class="login-form">
+                <input type="text" id="userId" placeholder="Enter User ID">
+                <input type="password" id="password" placeholder="Enter Password">
+                <select id="userRole">
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
+                </select>
+                <button onclick="login()">Login</button>
+                <p class="hint">Demo: Use any ID/password to login</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Dashboard -->
+    <div id="studentDashboard" class="screen">
+        <nav class="navbar">
+            <h2>Student Portal</h2>
+            <span id="studentName"></span>
+            <button onclick="logout()">Logout</button>
+        </nav>
+        
+        <div class="dashboard-container">
+            <!-- Student Profile Card -->
+            <div class="card">
+                <h3 style="margin-bottom: 12px; font-size: 16px;">👤 Student Profile</h3>
+                <div id="studentProfile">
+                    <!-- Profile will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Today's Schedule -->
+            <div class="card">
+                <h3>📅 Today's Schedule</h3>
+                <div id="scheduleList" class="schedule-list"></div>
+            </div>
+
+            <!-- QR Scanner for Attendance -->
+            <div class="card">
+                <h3>📸 Mark Attendance</h3>
+                <div class="qr-scanner">
+                    <div id="scanner-container" style="display: none; position: relative; margin-bottom: 15px;">
+                        <div style="width: 100%; height: 300px; background: #000; border-radius: 8px; position: relative; overflow: hidden;">
+                            <!-- Simulated camera view -->
+                            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, #222 25%, transparent 25%, transparent 75%, #222 75%, #222), linear-gradient(45deg, #222 25%, transparent 25%, transparent 75%, #222 75%, #222); background-size: 30px 30px; background-position: 0 0, 15px 15px; opacity: 0.3;"></div>
+                            
+                            <!-- Scanning frame -->
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200px; height: 200px;">
+                                <div style="position: absolute; width: 100%; height: 100%; border: 2px solid #00ff00; border-radius: 8px;"></div>
+                                <div style="position: absolute; top: 0; left: 0; width: 30px; height: 30px; border-top: 4px solid #00ff00; border-left: 4px solid #00ff00;"></div>
+                                <div style="position: absolute; top: 0; right: 0; width: 30px; height: 30px; border-top: 4px solid #00ff00; border-right: 4px solid #00ff00;"></div>
+                                <div style="position: absolute; bottom: 0; left: 0; width: 30px; height: 30px; border-bottom: 4px solid #00ff00; border-left: 4px solid #00ff00;"></div>
+                                <div style="position: absolute; bottom: 0; right: 0; width: 30px; height: 30px; border-bottom: 4px solid #00ff00; border-right: 4px solid #00ff00;"></div>
+                                
+                                <!-- Scanning line animation -->
+                                <div class="scanning-line" style="position: absolute; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, #00ff00, transparent); top: 0; animation: scan 2s linear infinite;"></div>
+                            </div>
+                            
+                            <!-- Camera status -->
+                            <div style="position: absolute; top: 10px; left: 10px; color: #00ff00; font-size: 12px; background: rgba(0,0,0,0.7); padding: 5px 10px; border-radius: 4px;">
+                                <span style="display: inline-block; width: 8px; height: 8px; background: #00ff00; border-radius: 50%; margin-right: 5px; animation: blink 1s infinite;"></span>
+                                Camera Active
+                            </div>
+                            
+                            <!-- Instructions -->
+                            <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; text-align: center; background: rgba(0,0,0,0.7); padding: 5px 15px; border-radius: 4px; font-size: 14px;">
+                                Position QR code within the frame
+                            </div>
+                        </div>
+                        
+                        <button onclick="stopQRScanner()" style="margin-top: 10px; width: 100%; background: #dc3545; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer;">Stop Scanning</button>
+                    </div>
+                    
+                    <input type="text" id="qrCodeInput" placeholder="Enter Class Code or Scan QR">
+                    <button onclick="markAttendance()" style="background: #28a745; color: white;">✓ Mark Present</button>
+                    <button onclick="startQRScanner()" style="background: #007bff; color: white;">📷 Scan QR Code</button>
+                </div>
+                <div id="attendanceStatus"></div>
+            </div>
+
+            <!-- Productivity Tracker -->
+            <div class="card">
+                <h3 style="margin-bottom: 12px; font-size: 16px;">📊 Productivity Tracker</h3>
+                <div id="productivityTracker"></div>
+            </div>
+            
+            <!-- Free Period Activities -->
+            <div class="card">
+                <h3 style="margin-bottom: 12px; font-size: 16px;">🎯 Recommended Activities</h3>
+                <div id="activitySuggestions"></div>
+            </div>
+
+            <!-- Attendance History -->
+            <div class="card">
+                <h3>📊 Your Attendance</h3>
+                <div id="attendanceHistory"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Teacher Dashboard -->
+    <div id="teacherDashboard" class="screen">
+        <nav class="navbar">
+            <h2>Teacher Portal</h2>
+            <span id="teacherName"></span>
+            <button onclick="logout()">Logout</button>
+        </nav>
+        
+        <div class="dashboard-container">
+            <!-- Generate QR for Class -->
+            <div class="card">
+                <h3>🔑 Generate Attendance QR</h3>
+                <select id="classSelect">
+                    <option value="">Select Class</option>
+                    <option value="CS101">CS101 - Computer Science</option>
+                    <option value="MATH201">MATH201 - Mathematics</option>
+                    <option value="PHY301">PHY301 - Physics</option>
+                    <option value="ENG101">ENG101 - English</option>
+                </select>
+                <button onclick="generateQR()">Generate QR Code</button>
+                <button onclick="testQRLibrary()" style="margin-left: 10px; background: #666;">Test QR Library</button>
+                <div id="qrDisplay"></div>
+            </div>
+
+            <!-- View Attendance -->
+            <div class="card">
+                <h3>📋 Class Attendance</h3>
+                <div id="classAttendanceView"></div>
+            </div>
+
+            <!-- Today's Classes -->
+            <div class="card">
+                <h3>📚 Your Classes Today</h3>
+                <div id="teacherSchedule"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+
