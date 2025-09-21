@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Planning</title>
+    <link rel="stylesheet" href="exploreStyles.css">
+</head>
+<body>
+    <div class="explore-container">
+        <h1>Career Planning Assistant</h1>
+        
+        <div class="section-nav">
+            <a href="https://www.linkedin.com/learning/" target="_blank" class="nav-link">LinkedIn Learning</a>
+            <a href="https://www.coursera.org/career-academy" target="_blank" class="nav-link">Coursera Career Academy</a>
+            <a href="https://www.indeed.com/career-advice" target="_blank" class="nav-link">Indeed Career Guide</a>
+        </div>
+        
+        <div class="career-path-card">
+            <h3>Career Planning Guide</h3>
+            <p>Effective career planning involves understanding your skills, interests, and values, then aligning them with potential career paths. Follow these steps to create a solid career plan:</p>
+            <ol>
+                <li><strong>Self-assessment:</strong> Identify your strengths, weaknesses, interests, and values</li>
+                <li><strong>Career exploration:</strong> Research industries and roles that match your profile</li>
+                <li><strong>Goal setting:</strong> Define short-term and long-term career objectives</li>
+                <li><strong>Skill development:</strong> Acquire necessary skills through education and training</li>
+                <li><strong>Networking:</strong> Build professional relationships in your target field</li>
+                <li><strong>Experience building:</strong> Gain relevant experience through internships or projects</li>
+                <li><strong>Regular review:</strong> Periodically reassess and adjust your career plan</li>
+            </ol>
+        </div>
+        
+        <div class="career-input-section">
+            <p>Tell us about your career interests to get personalized recommendations:</p>
+            <textarea id="careerInterests" placeholder="e.g., I'm interested in software development, especially in AI and machine learning. I want to work on innovative projects and learn new technologies." rows="5"></textarea>
+            <button id="generateRoadmap" class="mark-present-button">Generate My Roadmap</button>
+        </div>
+        
+        <div id="careerRecommendations" class="career-recommendations">
+            <h3>Your Personalized Career Roadmap:</h3>
+            <div id="roadmapContent" class="career-path-card"></div>
+            
+            <div class="career-resources">
+                <div class="resource-card">
+                    <h4>Recommended Books</h4>
+                    <ul id="bookList"></ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h4>Suggested Projects</h4>
+                    <ul id="projectList"></ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h4>Workshops & Courses</h4>
+                    <ul id="workshopList"></ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="career-path-card">
+            <h3>Additional Career Resources</h3>
+            <ul>
+                <li><strong>Resume Building:</strong> <a href="https://www.resume.com/" target="_blank">Resume.com</a> - Free resume builder with templates</li>
+                <li><strong>Job Search:</strong> <a href="https://www.linkedin.com/jobs/" target="_blank">LinkedIn Jobs</a> - Find jobs and network with professionals</li>
+                <li><strong>Interview Preparation:</strong> <a href="https://www.themuse.com/advice/interview-questions-and-answers" target="_blank">The Muse</a> - Interview tips and common questions</li>
+                <li><strong>Salary Information:</strong> <a href="https://www.glassdoor.com/Salaries/index.htm" target="_blank">Glassdoor Salaries</a> - Research salary ranges for different positions</li>
+                <li><strong>Skill Assessment:</strong> <a href="https://www.myskillsfuture.gov.sg/content/portal/en/index.html" target="_blank">SkillsFuture</a> - Assess your skills and find relevant courses</li>
+            </ul>
+        </div>
+        
+        <div class="quiz-navigation">
+            <button id="backToDashboard" class="back-button">Back to Dashboard</button>
+        </div>
+    </div>
+
+    <script src="careerPlanning.js"></script>
+</body>
+</html>

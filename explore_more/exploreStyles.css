@@ -1,0 +1,503 @@
+/* Shared Styles for Explore More Pages */
+
+/* Career Planning Specific Styles */
+.career-input-section {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-left: 4px solid var(--primary-color);
+  box-shadow: var(--card-shadow);
+}
+
+.career-input-section textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+  margin: 1rem 0;
+  resize: vertical;
+}
+
+.career-input-section button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.career-input-section button:hover {
+  background-color: #2980b9;
+}
+
+.career-recommendations {
+  display: none;
+}
+
+.career-recommendations.active {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+.career-path-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border-left: 4px solid var(--accent-color);
+}
+
+.career-resources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.resource-card {
+  flex: 1 1 300px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  padding: 1.5rem;
+  border-left: 4px solid var(--secondary-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resource-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--hover-shadow);
+}
+
+.resource-card h4 {
+  color: var(--secondary-color);
+  margin-top: 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Math Problem Solving Specific Styles */
+.math-section {
+    background-color: #f0f7ff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Project Brainstorming Specific Styles */
+.project-section {
+    background-color: #f5f0ff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.project-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    border-left: 5px solid #9c27b0;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.project-card h3 {
+    color: #7b1fa2;
+    margin-top: 0;
+    font-size: 1.4rem;
+}
+
+.roadmap-step {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin: 8px 0;
+    border-left: 3px solid #9c27b0;
+    font-family: 'Courier New', monospace;
+    transition: all 0.2s ease;
+}
+
+.roadmap-step:hover {
+    background-color: #f3e5f5;
+    transform: translateX(5px);
+}
+
+.project-category {
+    display: inline-block;
+    background-color: #e1bee7;
+    color: #4a148c;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+.project-input-section {
+    background-color: #f5f0ff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.project-input-section textarea {
+    background-color: #ffffff;
+    border: 2px solid #d1c4e9;
+    transition: border-color 0.3s ease;
+}
+
+.project-input-section textarea:focus {
+    border-color: #9c27b0;
+    outline: none;
+}
+
+.project-input-section button {
+    background-color: #9c27b0;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.project-input-section button:hover {
+    background-color: #7b1fa2;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.math-topic-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  border-left: 5px solid #4285f4;
+}
+
+.math-topic-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.math-topic-card h3 {
+  color: #1a73e8;
+  margin-top: 0;
+  font-size: 1.4rem;
+}
+
+.math-topic-card p {
+  color: #555;
+  line-height: 1.5;
+}
+
+.math-resources {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.math-resource-link {
+  display: block;
+  background-color: #e8f0fe;
+  color: #1967d2;
+  padding: 12px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.math-resource-link:hover {
+  background-color: #d2e3fc;
+  transform: scale(1.02);
+}
+
+.practice-problem {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px 0;
+  border-left: 3px solid #fbbc04;
+  font-family: 'Courier New', monospace;
+}
+
+.math-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.formula-box {
+  background-color: #e6f4ea;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0;
+  border: 1px solid #ceead6;
+  font-family: 'Courier New', monospace;
+}
+
+.topic-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.topic-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.topic-list li:before {
+  content: "→ ";
+  color: #4285f4;
+}
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2c3e50;
+  --accent-color: #e74c3c;
+  --light-bg: #f5f7fa;
+  --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light-bg);
+  margin: 0;
+  padding: 0;
+}
+
+.explore-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+}
+
+h1 {
+  color: var(--secondary-color);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+}
+
+/* Content cards */
+.content-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 4px solid var(--primary-color);
+}
+
+.content-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--hover-shadow);
+}
+
+.content-title {
+  color: var(--secondary-color);
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.content-desc {
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.content-meta {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content-tag {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.content-link {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.content-link:hover {
+  background-color: #2980b9;
+}
+
+/* Lists */
+.content-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.content-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.content-list li:last-child {
+  border-bottom: none;
+}
+
+/* Navigation */
+.section-nav {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.section-nav a {
+  color: #fff;
+  background-color: var(--primary-color);
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  text-align: center;
+  min-width: 120px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.section-nav a:hover {
+  background-color: #2980b9;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+.math-button-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin: 25px 0;
+}
+
+.math-nav-button {
+  display: block;
+  background-color: #fff;
+  color: #333;
+  text-decoration: none;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  border: 2px solid #e0e0e0;
+}
+
+.math-nav-button.algebra {
+  border-left: 5px solid #4285f4;
+}
+
+.math-nav-button.geometry {
+  border-left: 5px solid #ea4335;
+}
+
+.math-nav-button.calculus {
+  border-left: 5px solid #fbbc04;
+}
+
+.math-nav-button.resources {
+  border-left: 5px solid #34a853;
+}
+
+.math-nav-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.quiz-navigation {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.back-button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #c0392b;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .explore-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  .content-title {
+    font-size: 1.2rem;
+  }
+  
+  .content-meta {
+    flex-direction: column;
+  }
+  
+  .content-tag {
+    margin-top: 0.5rem;
+    display: inline-block;
+  }
+  
+  .section-nav {
+    flex-direction: column;
+  }
+  
+  .nav-link {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Brainstorming</title>
+    <link rel="stylesheet" href="exploreStyles.css">
+</head>
+<body>
+    <div class="explore-container">
+        <h1>Project Brainstorming Assistant</h1>
+        
+        <div class="project-section">
+            <h2>Find Your Next Coding Project</h2>
+            <p>Welcome to the Project Brainstorming Assistant! This tool helps you discover exciting project ideas based on your interests and skill level. Whether you're a beginner looking for your first project or an experienced developer seeking new challenges, we've got you covered.</p>
+            
+            <div class="math-button-nav">
+                <a href="#web-dev" class="math-nav-button algebra">Web Development</a>
+                <a href="#mobile-dev" class="math-nav-button geometry">Mobile Apps</a>
+                <a href="#game-dev" class="math-nav-button calculus">Game Development</a>
+                <a href="#data-science" class="math-nav-button resources">Data Science</a>
+            </div>
+        </div>
+        
+        <div class="project-input-section">
+            <p>Tell us about your interests and desired project type to get personalized ideas:</p>
+            <textarea id="projectInterests" placeholder="e.g., I'm interested in web development, creating something interactive. Maybe a tool for daily tasks or a small game." rows="5"></textarea>
+            <button id="generateProjectIdeas" class="mark-present-button">Generate Project Ideas</button>
+        </div>
+        
+        <div id="projectRecommendations" class="activity-item career-recommendations">
+            <h3>Recommended Mini-Projects:</h3>
+            <div id="projectIdeasContent"></div>
+        </div>
+        
+        <div class="project-section">
+            <h2>Project Development Tips</h2>
+            <div class="project-card">
+                <h3>Getting Started</h3>
+                <p>When beginning a new project, follow these steps:</p>
+                <div class="roadmap-step">1. Define clear project goals and requirements</div>
+                <div class="roadmap-step">2. Break down the project into smaller, manageable tasks</div>
+                <div class="roadmap-step">3. Create a simple prototype before adding complex features</div>
+                <div class="roadmap-step">4. Test frequently and gather feedback</div>
+            </div>
+            
+            <div class="project-card">
+                <h3>Recommended Resources</h3>
+                <div class="math-resources">
+                    <a href="https://github.com/danistefanovic/build-your-own-x" target="_blank" class="math-resource-link">Build Your Own X</a>
+                    <a href="https://www.freecodecamp.org/news/tag/projects/" target="_blank" class="math-resource-link">FreeCodeCamp Projects</a>
+                    <a href="https://www.codementor.io/projects" target="_blank" class="math-resource-link">Codementor Project Ideas</a>
+                    <a href="https://github.com/florinpop17/app-ideas" target="_blank" class="math-resource-link">App Ideas Collection</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="quiz-navigation">
+            <button id="backToDashboard" class="stop-scan-button">Back to Dashboard</button>
+        </div>
+    </div>
+
+    <script src="projectBrainstorming.js"></script>
+</body>
+</html>
