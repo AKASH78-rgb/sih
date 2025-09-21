@@ -1,0 +1,157 @@
+/* AI & ML Research Papers Styles */
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2c3e50;
+  --accent-color: #e74c3c;
+  --light-bg: #f5f7fa;
+  --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light-bg);
+  margin: 0;
+  padding: 0;
+}
+
+.research-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+}
+
+h1 {
+  color: var(--secondary-color);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+}
+
+/* Research paper cards */
+.paper-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 4px solid var(--primary-color);
+}
+
+.paper-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--hover-shadow);
+}
+
+.paper-title {
+  color: var(--secondary-color);
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.paper-meta {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.paper-journal {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.paper-abstract {
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.paper-link {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.paper-link:hover {
+  background-color: #2980b9;
+}
+
+/* Navigation */
+.section-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #34495e;
+}
+
+.quiz-navigation {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.stop-scan-button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.stop-scan-button:hover {
+  background-color: #c0392b;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .research-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  .paper-title {
+    font-size: 1.2rem;
+  }
+  
+  .paper-meta {
+    flex-direction: column;
+  }
+  
+  .paper-journal {
+    margin-top: 0.5rem;
+    display: inline-block;
+  }
+}
