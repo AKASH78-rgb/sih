@@ -3,6 +3,67 @@
     padding: 0;
     box-sizing: border-box;
 }
+  @media print {
+        body * { visibility: hidden; }
+        #teacherDashboard, #teacherDashboard * { visibility: hidden; }
+        #teacherRecCard, #teacherRecCard * { visibility: visible; }
+        #teacherRecCard { position: absolute; left: 0; top: 0; width: 100%; }
+        /* Buttons hidden on print */
+        #teacherRecCopyBtn, #teacherRecCsvBtn, #teacherRecPrintBtn { display: none !important; }
+    }
+    
+    /* QR Scanner Animations */
+    @keyframes scan-line {
+        0% { top: 0; }
+        50% { top: 100%; }
+        100% { top: 0; }
+    }
+    
+    @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.5; }
+        100% { opacity: 1; }
+    }
+    
+    /* Camera video styling */
+    #qr-video, #qr-reader video {
+        border-radius: 8px;
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Scanner overlay positioning */
+    #scanner-container {
+        position: relative;
+    }
+    
+    #scanning-overlay {
+        pointer-events: none;
+        z-index: 100;
+    }
+    
+    /* Teacher notification animations */
+    @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes slideOut {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+    
+    @keyframes bounce {
+        0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0); }
+        40%, 43% { transform: translate3d(0,-30px,0); }
+        70% { transform: translate3d(0,-15px,0); }
+        90% { transform: translate3d(0,-4px,0); }
+    }
+    
+    @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+    }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -155,6 +216,11 @@ body {
     font-size: 18px;
 }
 
+.card-title-small {
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
 /* Schedule List */
 .schedule-item {
     background: #f8f9fa;
@@ -241,6 +307,317 @@ body {
     padding: 10px;
     background: white;
     border-radius: 10px;
+}
+
+#scanner-container {
+    display: none;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.camera-view {
+    width: 100%;
+    height: 300px;
+    background: #000;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.camera-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #222 25%, transparent 25%, transparent 75%, #222 75%, #222), linear-gradient(45deg, #222 25%, transparent 25%, transparent 75%, #222 75%, #222);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+    opacity: 0.3;
+}
+
+.scanning-frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+}
+
+.frame-border {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #00ff00;
+    border-radius: 8px;
+}
+
+.corner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-color: #00ff00;
+    border-style: solid;
+}
+
+.top-left {
+    top: 0;
+    left: 0;
+    border-width: 4px 0 0 4px;
+}
+
+.top-right {
+    top: 0;
+    right: 0;
+    border-width: 4px 4px 0 0;
+}
+
+.bottom-left {
+    bottom: 0;
+    left: 0;
+    border-width: 0 0 4px 4px;
+}
+
+.bottom-right {
+    bottom: 0;
+    right: 0;
+    border-width: 0 4px 4px 0;
+}
+
+.scanning-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00ff00, transparent);
+    top: 0;
+    animation: scan 2s linear infinite;
+}
+
+.camera-status {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #00ff00;
+    font-size: 12px;
+    background: rgba(0,0,0,0.7);
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #00ff00;
+    border-radius: 50%;
+    margin-right: 5px;
+    animation: blink 1s infinite;
+}
+
+.qr-instructions {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-align: center;
+    background: rgba(0,0,0,0.7);
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.stop-scan-button {
+    margin-top: 10px;
+    width: 100%;
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.mark-present-button {
+    background: #28a745;
+    color: white;
+}
+
+.scan-qr-button {
+    background: #007bff;
+    color: white;
+}
+
+.quiz-section {
+    margin-top: 15px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.quiz-section-title {
+    font-size: 14px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Box-like structure for quiz and explore more items */
+#quizList li, #linkedActivitiesList li {
+    background: #ffffff;
+    margin-bottom: 10px;
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-left: 3px solid #667eea;
+}
+
+#quizList li:hover, #linkedActivitiesList li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+#quizList a, #linkedActivitiesList a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    display: block;
+}
+
+.test-qr-button {
+    margin-left: 10px;
+    background: #666;
+}
+
+/* Quiz Section */
+#quizList {
+    list-style: none;
+    padding: 0;
+}
+
+#quizList li {
+    background: #f8f9fa;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border-left: 3px solid #667eea;
+    transition: all 0.3s;
+}
+
+#quizList li:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+}
+
+#quizList li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    display: block;
+}
+
+#quizList li a:hover {
+    color: #667eea;
+}
+
+.quiz-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+}
+
+.quiz-container h1 {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.quiz-question {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.question-text {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.options-container label.quiz-option {
+    display: block;
+    background: #ffffff;
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.options-container label.quiz-option:hover {
+    background-color: #f0f8ff;
+    border-color: #667eea;
+}
+
+.options-container label.quiz-option input[type="radio"] {
+    margin-right: 10px;
+    accent-color: #667eea;
+}
+
+.options-container label.quiz-option input[type="radio"]:checked + span {
+    color: #667eea;
+    font-weight: bold;
+}
+
+.feedback {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.quiz-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.quiz-navigation button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    width: 48%; /* To make buttons take up roughly half width */
+}
+
+.quiz-navigation button:hover {
+    transform: translateY(-2px);
+}
+
+#quizResults {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    background: #e8f5e9;
+    color: #155724;
 }
 
 /* Activity Suggestions */
@@ -400,6 +777,31 @@ body {
     .navbar h2 {
         font-size: 20px;
     }
+}
+
+.quiz-performance-box {
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    color: #333;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 15px; /* Adjust as needed for spacing */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-performance-score {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.quiz-performance-details {
+    font-size: 13px;
+    color: #555;
+}
+
+.career-recommendations {
+    display: none;
 }
 
 /* QR Scanner Animations */
