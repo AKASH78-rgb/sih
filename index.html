@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Attendance & Activity App</title>
     <link rel="stylesheet" href="styles.css">
+    
 </head>
 <body>
     <!-- Login Screen -->
@@ -15,7 +16,7 @@
             <div class="login-form">
                 <input type="text" id="userId" placeholder="Enter User ID">
                 <input type="password" id="password" placeholder="Enter Password">
-                <select id="userRole">
+                <select id="userRole" title="Select User Role">
                     <option value="student">Student</option>
                     <option value="teacher">Teacher</option>
                 </select>
@@ -30,13 +31,14 @@
         <nav class="navbar">
             <h2>Student Portal</h2>
             <span id="studentName"></span>
+            <span id="dateTime" style="margin-left: auto; font-size: 14px; align-self: center;"></span>
             <button onclick="logout()">Logout</button>
         </nav>
         
         <div class="dashboard-container">
             <!-- Student Profile Card -->
             <div class="card">
-                <h3 style="margin-bottom: 12px; font-size: 16px;">👤 Student Profile</h3>
+                <h3 class="card-title-small">👤 Student Profile</h3>
                 <div id="studentProfile">
                     <!-- Profile will be loaded here -->
                 </div>
@@ -52,61 +54,106 @@
             <div class="card">
                 <h3>📸 Mark Attendance</h3>
                 <div class="qr-scanner">
-                    <div id="scanner-container" style="display: none; position: relative; margin-bottom: 15px;">
-                        <div style="width: 100%; height: 300px; background: #000; border-radius: 8px; position: relative; overflow: hidden;">
-                            <!-- Simulated camera view -->
-                            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, #222 25%, transparent 25%, transparent 75%, #222 75%, #222), linear-gradient(45deg, #222 25%, transparent 25%, transparent 75%, #222 75%, #222); background-size: 30px 30px; background-position: 0 0, 15px 15px; opacity: 0.3;"></div>
-                            
-                            <!-- Scanning frame -->
-                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200px; height: 200px;">
-                                <div style="position: absolute; width: 100%; height: 100%; border: 2px solid #00ff00; border-radius: 8px;"></div>
-                                <div style="position: absolute; top: 0; left: 0; width: 30px; height: 30px; border-top: 4px solid #00ff00; border-left: 4px solid #00ff00;"></div>
-                                <div style="position: absolute; top: 0; right: 0; width: 30px; height: 30px; border-top: 4px solid #00ff00; border-right: 4px solid #00ff00;"></div>
-                                <div style="position: absolute; bottom: 0; left: 0; width: 30px; height: 30px; border-bottom: 4px solid #00ff00; border-left: 4px solid #00ff00;"></div>
-                                <div style="position: absolute; bottom: 0; right: 0; width: 30px; height: 30px; border-bottom: 4px solid #00ff00; border-right: 4px solid #00ff00;"></div>
-                                
-                                <!-- Scanning line animation -->
-                                <div class="scanning-line" style="position: absolute; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, #00ff00, transparent); top: 0; animation: scan 2s linear infinite;"></div>
-                            </div>
-                            
-                            <!-- Camera status -->
-                            <div style="position: absolute; top: 10px; left: 10px; color: #00ff00; font-size: 12px; background: rgba(0,0,0,0.7); padding: 5px 10px; border-radius: 4px;">
-                                <span style="display: inline-block; width: 8px; height: 8px; background: #00ff00; border-radius: 50%; margin-right: 5px; animation: blink 1s infinite;"></span>
-                                Camera Active
-                            </div>
-                            
-                            <!-- Instructions -->
-                            <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; text-align: center; background: rgba(0,0,0,0.7); padding: 5px 15px; border-radius: 4px; font-size: 14px;">
-                                Position QR code within the frame
-                            </div>
+                    <!-- Status messages -->
+                    <div id="attendance-status" style="margin-bottom: 15px; padding: 10px; border-radius: 6px; display: none;"></div>
+                    
+                    <!-- Subject selection area -->
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Select Subject:</label>
+                        
+                        <!-- Camera display area - shows right below subject line -->
+                        <div id="scanner-container" style="display: none; text-align: center; background: #f8f9fa; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #4caf50;">
+                            <!-- Camera feed and controls will be inserted here by JavaScript -->
                         </div>
                         
-                        <button onclick="stopQRScanner()" style="margin-top: 10px; width: 100%; background: #dc3545; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer;">Stop Scanning</button>
+                        <!-- Manual input field -->
+                        <input type="text" id="qrCodeInput" placeholder="Enter class code (e.g., CN, TOC, FM, LAB)" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; text-align: center; margin-bottom: 10px;">
                     </div>
                     
-                    <input type="text" id="qrCodeInput" placeholder="Enter Class Code or Scan QR">
-                    <button onclick="markAttendance()" style="background: #28a745; color: white;">✓ Mark Present</button>
-                    <button onclick="startQRScanner()" style="background: #007bff; color: white;">📷 Scan QR Code</button>
+                    <!-- Action buttons -->
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                        <button onclick="markAttendance()" style="flex: 1; padding: 12px; background: #4caf50; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: 600;">
+                            ✓ Mark Present
+                        </button>
+                        <button onclick="startQRScanner()" style="flex: 1; padding: 12px; background: #2196f3; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: 600;">
+                            📷 Scan QR Code
+                        </button>
+                    </div>
+                    
                 </div>
                 <div id="attendanceStatus"></div>
             </div>
 
             <!-- Productivity Tracker -->
             <div class="card">
-                <h3 style="margin-bottom: 12px; font-size: 16px;">📊 Productivity Tracker</h3>
-                <div id="productivityTracker"></div>
+                <h3 class="card-title-small">📊 Productivity Tracker</h3>
+                <div id="productivityTracker">
+                    <div style="text-align: center; padding: 20px; color: #666;">
+                        <div style="font-size: 24px; margin-bottom: 10px;">📊</div>
+                        <div>Loading productivity data...</div>
+                    </div>
+                </div>
             </div>
             
             <!-- Free Period Activities -->
             <div class="card">
-                <h3 style="margin-bottom: 12px; font-size: 16px;">🎯 Recommended Activities</h3>
-                <div id="activitySuggestions"></div>
+                <h3 class="card-title-small">🎯 Recommended Activities</h3>
+                
+                <!-- Quiz Box - Files from Quiz Folder -->
+                <div id="quizSection" class="quiz-section">
+                    <h4 class="quiz-section-title">📝 Quizzes</h4>
+                    <ul id="quizList">
+                        <li style="margin-bottom: 8px; padding: 8px; background: #f8f9fa; border-radius: 4px; border-left: 3px solid #2196f3;">
+                            <a href="quiz/fundamentalManagementQuiz.html" target="_blank" style="text-decoration: none; color: #2196f3; font-weight: 500;">📊 Fundamental Management Quiz</a>
+                        </li>
+                        <li style="margin-bottom: 8px; padding: 8px; background: #f8f9fa; border-radius: 4px; border-left: 3px solid #2196f3;">
+                            <a href="quiz/computerNetworksQuiz.html" target="_blank" style="text-decoration: none; color: #2196f3; font-weight: 500;">🌐 Computer Networks Quiz</a>
+                        </li>
+                        <li style="margin-bottom: 8px; padding: 8px; background: #f8f9fa; border-radius: 4px; border-left: 3px solid #2196f3;">
+                            <a href="quiz/marketingManagementQuiz.html" target="_blank" style="text-decoration: none; color: #2196f3; font-weight: 500;">📈 Marketing Management Quiz</a>
+                        </li>
+                        <li style="margin-bottom: 8px; padding: 8px; background: #f8f9fa; border-radius: 4px; border-left: 3px solid #2196f3;">
+                            <a href="quiz/researchMethodologyAndIPRQuiz.html" target="_blank" style="text-decoration: none; color: #2196f3; font-weight: 500;">🔬 Research Methodology and IPR Quiz</a>
+                        </li>
+                        <li style="margin-bottom: 8px; padding: 8px; background: #f8f9fa; border-radius: 4px; border-left: 3px solid #2196f3;">
+                            <a href="quiz/aiMlResearchPapers.html" target="_blank" style="text-decoration: none; color: #2196f3; font-weight: 500;">🤖 AI/ML Research Papers</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Explore More Box - Files from Explore_More Folder -->
+                <div id="linkedActivitiesSection" class="quiz-section">
+                    <h4 class="quiz-section-title">🔗 Explore More</h4>
+                    <ul id="linkedActivitiesList">
+                        <li style="margin-bottom: 8px; padding: 8px; background: #f8f9fa; border-radius: 4px; border-left: 3px solid #4caf50;">
+                            <a href="explore_more/pythonProgramming.html" target="_blank" style="text-decoration: none; color: #4caf50; font-weight: 500;">🐍 Python Programming Practice</a>
+                        </li>
+                        <li style="margin-bottom: 8px; padding: 8px; background: #f8f9fa; border-radius: 4px; border-left: 3px solid #4caf50;">
+                            <a href="explore_more/careerPlanning.html" target="_blank" style="text-decoration: none; color: #4caf50; font-weight: 500;">🎯 Career Planning Workshop</a>
+                        </li>
+                        <li style="margin-bottom: 8px; padding: 8px; background: #f8f9fa; border-radius: 4px; border-left: 3px solid #4caf50;">
+                            <a href="explore_more/mathProblemSolving.html" target="_blank" style="text-decoration: none; color: #4caf50; font-weight: 500;">🧮 Math Problem Solving</a>
+                        </li>
+                        <li style="margin-bottom: 8px; padding: 8px; background: #f8f9fa; border-radius: 4px; border-left: 3px solid #4caf50;">
+                            <a href="explore_more/projectBrainstorming.html" target="_blank" style="text-decoration: none; color: #4caf50; font-weight: 500;">💡 Project Brainstorming</a>
+                        </li>
+                        <li style="margin-bottom: 8px; padding: 8px; background: #f8f9fa; border-radius: 4px; border-left: 3px solid #4caf50;">
+                            <a href="explore_more/physicalActivity.html" target="_blank" style="text-decoration: none; color: #4caf50; font-weight: 500;">🏃 Physical Activity Guide</a>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
 
             <!-- Attendance History -->
             <div class="card">
                 <h3>📊 Your Attendance</h3>
-                <div id="attendanceHistory"></div>
+                <div id="attendanceHistory">
+                    <div style="text-align: center; padding: 20px; color: #666;">
+                        <div style="font-size: 24px; margin-bottom: 10px;">📊</div>
+                        <div>Loading attendance history...</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -123,7 +170,7 @@
             <!-- Generate QR for Class -->
             <div class="card">
                 <h3>🔑 Generate Attendance QR</h3>
-                <select id="classSelect">
+                <select id="classSelect" title="Select Class">
                     <option value="">Select Class</option>
                     <option value="CS101">CS101 - Computer Science</option>
                     <option value="MATH201">MATH201 - Mathematics</option>
@@ -131,7 +178,7 @@
                     <option value="ENG101">ENG101 - English</option>
                 </select>
                 <button onclick="generateQR()">Generate QR Code</button>
-                <button onclick="testQRLibrary()" style="margin-left: 10px; background: #666;">Test QR Library</button>
+                <button onclick="testQRLibrary()" class="test-qr-button">Test QR Library</button>
                 <div id="qrDisplay"></div>
             </div>
 
@@ -145,6 +192,55 @@
             <div class="card">
                 <h3>📚 Your Classes Today</h3>
                 <div id="teacherSchedule"></div>
+            </div>
+
+            <!-- Recommended Schedule (by Subject) -->
+            <div class="card" id="teacherRecCard">
+                <h3>🧭 Recommended Schedule</h3>
+                <div id="teacherRecDayLabel" style="margin: 6px 0 12px; color:#555; font-weight:600;"></div>
+
+                <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:10px;">
+                    <label for="teacherDayPicker" style="font-weight:600;">Day:</label>
+                    <select id="teacherDayPicker" title="Select Day" style="min-width:140px;">
+                        <option value="TODAY">Today</option>
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                    </select>
+                    <label for="teacherSubjectPicker" style="font-weight:600;">Subject:</label>
+                    <select id="teacherSubjectPicker" title="Select Subject" style="min-width:200px;"></select>
+
+                    <label for="teacherTypeFilter" style="font-weight:600;">Type:</label>
+                    <select id="teacherTypeFilter" title="Filter by type" style="min-width:160px;">
+                        <option value="">All</option>
+                        <option value="LECTURE">Lecture</option>
+                        <option value="LAB">Lab</option>
+                        <option value="BREAK">Break/Lunch</option>
+                    </select>
+
+                    <label style="display:flex; align-items:center; gap:6px; margin-left:auto;">
+                        <input type="checkbox" id="teacherUpcomingOnly"> Upcoming only
+                    </label>
+                </div>
+
+                <div id="teacherRecSummary" style="margin-bottom:8px; color:#444; font-size: 14px;"></div>
+                <div style="margin-bottom:8px; color:#666; font-size:12px; display:flex; gap:12px; flex-wrap:wrap;">
+                    <span><span style="display:inline-block; width:10px; height:10px; background:#e3f2fd; border:1px solid #90caf9; margin-right:6px;"></span>Lecture</span>
+                    <span><span style="display:inline-block; width:10px; height:10px; background:#e8f5e9; border:1px solid #81c784; margin-right:6px;"></span>Lab</span>
+                    <span><span style="display:inline-block; width:10px; height:10px; background:#fff3e0; border:1px solid #ffb74d; margin-right:6px;"></span>Break/Lunch</span>
+                    <span><span style="display:inline-block; width:10px; height:10px; background:#ede7f6; border:1px solid #b39ddb; margin-right:6px;"></span>Current</span>
+                </div>
+
+                <div id="teacherRecommendedSchedule"></div>
+
+                <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:10px;">
+                    <button id="teacherRecCopyBtn">Copy</button>
+                    <button id="teacherRecCsvBtn">Export CSV</button>
+                    <button id="teacherRecPrintBtn">Print</button>
+                </div>
             </div>
         </div>
     </div>
